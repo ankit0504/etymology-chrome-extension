@@ -1,0 +1,22 @@
+{
+  "name": "thesaurus-chrome-extension",
+  "version": "1.0.0",
+  "description": "Attempting to make a chrome extension that lets a user easily find the etymology of a word",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankit0504/etymology-chrome-extension.git"
+  },
+  "author": "Ankit Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ankit0504/etymology-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/ankit0504/etymology-chrome-extension#readme",
+  "dependencies": {
+    "powerthesaurus-api": "^1.0.1"
+  }
+}
