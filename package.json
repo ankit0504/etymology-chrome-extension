@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ankit0504/etymology-chrome-extension#readme",
   "dependencies": {
-    "powerthesaurus-api": "^1.0.1"
+    "synonyms": "^1.0.1",
+    "uniq": "^1.0.1"
   }
 }
