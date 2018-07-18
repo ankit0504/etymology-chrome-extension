@@ -2,30 +2,28 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "clicked_browser_action" ) {
       var selected = (window.getSelection().toString()).split(" ");
-      if (selected) {
-        for (let word of selected) {
-          word = get_synonym(word)
-        }
-        console.log(selected)
+      var i;
+      var replace = [];
+      for (i = 0; i < selected.length; i++) {
+        replace.push(get_synonym(selected[i]));
       }
-      else {
-        return
-      }
+      const replacement = replace.join(" ");
+      replaceSelection(replacement)
     }
   }
 );
+
 function get_synonym(word){
-  var syn = require("synonyms");
-  var withPartOfSpeech = syn(word);
-  var synonyms = randomPartOfSpeech(withPartOfSpeech);
-  var randSynonym = synonyms[Math.floor(Math.random() * synonyms.length)];
-  console.log(synonyms)
-  console.log("*****************")
-  console.log(randSynonym)
-  return randSynonym
+  var tcom = require("thesaurus-com");
+  var synonyms = tcom.search(word).synonyms;
+  if (synonyms.length > 0){
+    return synonyms[Math.floor(Math.random() * synonyms.length)];
+  }
+  else {return word}
 }
 
-function randomPartOfSpeech(object) {
-  var keys = Object.keys(object)
-  return object[keys[ keys.length * Math.random() << 0]];
-};
+function replaceSelection(text) {
+  var range = window.getSelection().getRangeAt(0);
+  range.deleteContents();
+  range.insertNode(document.createTextNode(text));
+}
